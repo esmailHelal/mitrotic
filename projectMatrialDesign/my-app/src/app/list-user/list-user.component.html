@@ -1,0 +1,127 @@
+<!--<section>
+  <div class="container border">
+    <div class="row">
+      <div class="col-md-6"><h3>All User</h3></div>
+      <div class="col-md-6 d-flex justify-content-end">
+        <button type="button" routerLink="NewUser" class="btn btn-danger ">
+          NewAdd
+        </button>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name</th>
+          <th scope="col">phone</th>
+          <th scope="col">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let x of mydata">
+          <a href="{{ x.id }}">
+            <th scope="row">{{ x.id }}</th>
+          </a>
+          <td>{{ x.name }}</td>
+          <td>{{ x.phonebook }}</td>
+
+          <td>
+            <a
+              class="btn btn-primary"
+              routerLink="Edit/{{ x.id }}"
+              role="button"
+            >
+              edit</a
+            >
+
+            <button
+              type="button"
+              (click)="delet(x.id)"
+              class="btn btn-danger mx-2"
+            >
+              delet
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>-->
+<section>
+  <div class="container border">
+    <div class="row my-3">
+      <div class="col-md-6"><h3>All User</h3></div>
+      <div class="col-md-6 d-flex justify-content-end">
+        <button type="button" routerLink="NewUser" class="btn btn-danger ">
+          NewAdd
+        </button>
+      </div>
+    </div>
+    <table
+      mat-table
+      [dataSource]="dataSource | mypipe: term"
+      class="mat-elevation-z8"
+    >
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">
+          <a routerLink ="{{ element._id }}">{{ element._id }}</a>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- phonebook Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="phonebook">
+        <th mat-header-cell *matHeaderCellDef>phonebook</th>
+        <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            class="btn btn-primary"
+            routerLink="Edit/{{ element._id }}"
+            role="button"
+          >
+            edit</a
+          >
+
+          <button
+            type="button"
+            (click)="delet(element._id)"
+            class="btn btn-danger mx-2"
+          >
+            delet
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="form-group">
+      <label for=""></label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="term"
+        aria-describedby="helpId"
+        placeholder=""
+      />
+      <small id="helpId" class="form-text text-muted">search</small>
+    </div>
+  </div>
+</section>

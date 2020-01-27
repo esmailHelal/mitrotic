@@ -1,0 +1,42 @@
+<section>
+  <div class="container border my-3">
+    <div class="row my-3">
+      <div class="col-md-6"><h3>add User</h3></div>
+    </div>
+    <form #myform="ngForm" (ngSubmit)="form(myform.value)">
+      <div class="form-group ">
+        <label for="inputEmail4">name</label>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="name"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">email</label>
+        <input
+          type="text"
+          name="email"
+          class="form-control"
+          placeholder="email"
+          ngModel
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="inputAddress">phone</label>
+        <input
+          type="text"
+          name="phone"
+          class="form-control"
+          placeholder="phone"
+          ngModel
+        />
+      </div>
+
+      <button type="submit" class="btn btn-success">add</button>
+    </form>
+  </div>
+</section>
